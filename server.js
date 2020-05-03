@@ -21,9 +21,6 @@ mongoose.connect(dbURL, function(err){
     }
 });
 
-
-
-
 //socket.io
 var socket = require('socket.io');
 var io = socket(server);
@@ -32,7 +29,6 @@ io.sockets.on('connection', newConnection);
 
 function newConnection(socket) {
     console.log('new connection:' + socket.id);
-
     score.find({}, function(err, docs){
         if(err) throw err;
         console.log(docs)
@@ -42,21 +38,15 @@ function newConnection(socket) {
     
     //works with the JSON 
     function scoreMsg(data) {
-        
         //send to everyone
-        
         io.sockets.emit('playerScore', data)
-
-
         console.log(data);
     }
 
     socket.on('database', databaseMsg);
 
     function databaseMsg(data) {
-        
         var newScore = new score(data);
-        
         newScore.save(function(err){
             if(err) throw err;
             io.sockets.emit('database', data)
@@ -64,12 +54,6 @@ function newConnection(socket) {
         })
         console.log(newScore)
     }
-    
 }
-
-
-
-
-
 
 console.log("We are LIVE!");

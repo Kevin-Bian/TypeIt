@@ -15,7 +15,6 @@ const gameOverMessage = document.querySelector('#message');
 const secondsLeft = document.querySelector('#seconds');
 const otherScore = document.querySelector('#other-score');
 
-
 const words =[
     'Hello',
     'Lama',
@@ -32,10 +31,7 @@ function init() {
     setInterval(gameStatus, 50);
     setInterval(sendScore, 1000);
     setInterval(updateHighest, 1000);
-    
-
 }
-
 
 ///////////////////////////////////// sockets.io stuff /////////////////////////////////////////////
 var socket;
@@ -61,16 +57,10 @@ function maxScore(data) {
     highestArr.push(data.score)
 }
 
-//ddatabase
-
-
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 function updateHighest() {
     otherScore.innerHTML = Math.max.apply(null, highestArr)
-
     mongo.connect(dbURL, function(err, db){
         assert.equal(null, err);
         db.collection('top-score').insertOne(item, function(err, result) {
@@ -81,7 +71,6 @@ function updateHighest() {
     });
 }
 
-
 function begin() {
     if(checkWords()) {
         playing = true;
@@ -90,7 +79,6 @@ function begin() {
         input.value = '';
         score = score + 1;
     }
-
     if(score === -1) {
         displayScore.innerHTML = 0;
     } else {
@@ -107,7 +95,6 @@ function checkWords() {
         return false;
     }
 }
-
 
 function getWord(words) {
     const randIndex = Math.floor(Math.random() * words.length);
