@@ -15,7 +15,7 @@
   "author": "Kevin Bian",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.11",
     "socket.io": "^2.2.0"
